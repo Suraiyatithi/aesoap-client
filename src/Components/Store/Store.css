@@ -1,0 +1,18 @@
+/* Add this CSS to your stylesheet */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgb(46, 44, 44); /* Replace with your desired background color */
+  color: #fff; /* Text color */
+  width: auto; /* Allow the width to adjust based on content */
+  height: auto; /* Allow the height to adjust based on content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 0; 
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: black; /* Background color on hover */
+}
