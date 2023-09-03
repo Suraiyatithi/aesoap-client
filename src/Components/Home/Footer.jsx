@@ -1,24 +1,45 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { FaArrowRight, FaArrowUp, FaArrowsAlt, FaExpandArrowsAlt, FaLocationArrow, FaTicketAlt } from 'react-icons/fa';
 import { BsArrowRight, BsArrowUpRight } from "react-icons/bs";
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 const Footer = () => {
+    const triggerAnimations = () => {
+        AOS.refresh(); // Refresh AOS to trigger animations
+      };
+    
+      useEffect(() => {
+        // Initialize AOS
+        AOS.init({
+          duration: 1000,
+          once: true,
+        });
+    
+        // Attach the scroll event listener
+        window.addEventListener('scroll', triggerAnimations);
+    
+        // Clean up the event listener on component unmount
+        return () => {
+          window.removeEventListener('scroll', triggerAnimations);
+        };
+      }, []);
     return (
         <div className='bg-neutral-900 text-white leading-loose divide-y-4 divide-solid lg:mt-24'>
             <div className="">
                 <div className="lg:flex p-3">
                     <div className="lg:w-2/5 p-6">
-                   <h4> Subscribe to Aesop communications</h4>
-                   <p>____________________________________________</p>
+                   <h4 data-aos="fade-right"> Subscribe to Aesop communications</h4>
+                   <p data-aos="fade-right">____________________________________________</p>
 
-<div className='text-xl font-bold p-1 border rounded border-white text-white hover:bg-zinc-500 hover:text-white  mt-4 flex justify-between'>
+<div data-aos="fade-right" className='text-xl font-bold p-1 border rounded border-white text-white hover:bg-zinc-500 hover:text-white  mt-4 flex justify-between'>
 Email address
 <BsArrowRight className='m-2'/></div>
 
-<p className='flex'><FaTicketAlt></FaTicketAlt> Subscribe to receive communications from Aesop. By subscribing, 
+<p data-aos="fade-right" className='flex'><FaTicketAlt></FaTicketAlt> Subscribe to receive communications from Aesop. By subscribing, 
 you confirm you have read and understood our privacy policy.</p>
                     </div>
         <div className="w-3/5 md:flex lg:flex">
-           <div className="lg:w-1/3 p-6">
+           <div data-aos="fade-right" className="lg:w-1/3 p-6">
                   <h4>  Orders and support</h4>
                   <p>_______________________</p>
 <p className='flex'>Contact us<BsArrowUpRight className='pl-1 mt-2'/> </p>
@@ -28,7 +49,7 @@ you confirm you have read and understood our privacy policy.</p>
 <p>Order history</p>
 <p>Terms and conditions</p>
                     </div>
-                    <div className="lg:w-1/3 p-6">
+                    <div data-aos="fade-left" className="lg:w-1/3 p-6">
                         <h4>  Services</h4>
                     <p>______________________</p>
                     <p>Live assistance</p>
@@ -37,7 +58,7 @@ you confirm you have read and understood our privacy policy.</p>
                     <p>Click and Collect</p>
                     <p>Video consultation</p>
                     </div>
-                    <div className="lg:w-1/3 p-6">
+                    <div data-aos="fade-left" className="lg:w-1/3 p-6">
                    <h4> Location preferences</h4>
                     <p>______________________</p>
                     <p>Shipping:</p>
@@ -51,16 +72,16 @@ you confirm you have read and understood our privacy policy.</p>
             
                 <div className="lg:flex">
                 <div className="lg:w-2/5 p-6">
-                   <h4> Sustainability</h4>
-                   <p>______________________________________________</p>
+                   <h4 data-aos="fade-right"> Sustainability</h4>
+                   <p data-aos="fade-right">______________________________________________</p>
 
 
 
-<p className='flex'>All Aesop products are vegan, and we do not test our formulations or ingredients on animals. 
+<p data-aos="fade-right" className='flex'>All Aesop products are vegan, and we do not test our formulations or ingredients on animals. 
 We are Leaping Bunny approved and a Certified B Corporation. Learn more</p>
                     </div>
                     <div className="w-3/5 md:flex lg:flex">
-                    <div className="lg:w-1/3 p-6">
+                    <div data-aos="fade-left" className="lg:w-1/3 p-6">
                    <h4>   About </h4>
                     <p>______________________</p>
                     <p>Our story</p>
@@ -70,7 +91,7 @@ We are Leaping Bunny approved and a Certified B Corporation. Learn more</p>
                     <p>Accessibility</p>
                     <p>Cookie Policy</p>
                     </div>
-                    <div className="lg:w-1/3 p-6">
+                    <div data-aos="fade-left" className="lg:w-1/3 p-6">
                         <h4>   Social media</h4>
                         <p>_____________________</p>
                     <p className='flex'>Instagram <BsArrowUpRight className='pl-1 mt-2'></BsArrowUpRight> </p>

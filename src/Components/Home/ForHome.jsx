@@ -13,6 +13,8 @@ import img1 from '../../assets/Aesop_Home_Post-Poo_Drops_100mL_Web_Large_782x796
 import img2 from '../../assets/forhome2.jpg';
 import img3 from '../../assets/forhome.jpg';
 import img4 from '../../assets/forhome6.jpg'
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
 import { BsArrowRight } from 'react-icons/bs';
 
@@ -33,6 +35,26 @@ const ForHome = () => {
         setIsPrevButtonVisible(swiper.activeIndex > 0);
       }
     }, []);
+              
+  const triggerAnimations = () => {
+    AOS.refresh(); // Refresh AOS to trigger animations
+  };
+
+  useEffect(() => {
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', triggerAnimations);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', triggerAnimations);
+    };
+  }, []);
   
     const handleNext = () => {
       try {
@@ -55,26 +77,39 @@ const ForHome = () => {
     };
     return (
         <div className='lg:mb-56'>
-             <Swiper
+        
+                <Swiper
         ref={swiperRef}
         slidesPerView={3}
         spaceBetween={30}
-        pagination={false} 
+        pagination={false}
         modules={[Keyboard, Scrollbar, Navigation]}
         className="mySwiper relative"
-      > 
-          
+        breakpoints={{
+        
+          300: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2, 
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
+      >
+   
       
 
 
 
         <SwiperSlide>
    <div className="">
-   <p className='sm:mt-12  lg:mt-24 '> For the home</p>
-       <h1 className='text-3xl mb-10'>    Domestic pleasures</h1>
-<p>Our range of aromatic formulations for the home are practical and pleasing in equal measure.</p>
+   <p data-aos="fade-right" className='sm:mt-12  lg:mt-24 '> For the home</p>
+       <h1 data-aos="fade-right" className='text-3xl mb-10'>    Domestic pleasures</h1>
+<p data-aos="fade-right">Our range of aromatic formulations for the home are practical and pleasing in equal measure.</p>
 
-<p className='flex mt-10'>
+<p data-aos="fade-right" className='flex mt-10'>
 See all Home <BsArrowRight className='mt-1 ml-2'></BsArrowRight> </p>
    </div>
 
@@ -147,18 +182,17 @@ See all Home <BsArrowRight className='mt-1 ml-2'></BsArrowRight> </p>
         </SwiperSlide>
 
       </Swiper>
-      {/* absolute inset-x-0 bottom-8 -py-1*/}
-      {/* Custom navigation buttons */}
+
       <div className=" relative custom-navigation flex ">
       
         <div className="absolute right-0 top-0">
-        <button className="custom-next relatve text-white text-7xl bg-black py-2 px-4" onClick={handleNext}>
+        <button data-aos="fade-right" className="custom-next relatve text-white text-7xl bg-black py-2 px-4" onClick={handleNext}>
           &gt;
         </button>
         </div>
         {isPrevButtonVisible && (
        <div className="absolute top-0 left-0">
-           <button className="custom-prev relative text-white text-7xl bg-black py-2 px-4" onClick={handlePrev}>
+           <button data-aos="fade-left" className="custom-prev relative text-white text-7xl bg-black py-2 px-4" onClick={handlePrev}>
             &lt;
           </button>
        </div>

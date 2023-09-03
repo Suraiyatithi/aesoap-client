@@ -14,6 +14,9 @@ import img2 from '../../assets/bodysoap3.jpg';
 import img3 from '../../assets/bodysoap4.jpg';
 
 import { BsArrowRight } from 'react-icons/bs';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+
 const Forbody = () => {
   const swiperRef = useRef(null);
   const [isPrevButtonVisible, setIsPrevButtonVisible] = useState(false);
@@ -51,27 +54,58 @@ const Forbody = () => {
       console.error('Error in handlePrev:', error);
     }
   };
+  const triggerAnimations = () => {
+    AOS.refresh(); // Refresh AOS to trigger animations
+  };
+
+  useEffect(() => {
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+
+    // Attach the scroll event listener
+    window.addEventListener('scroll', triggerAnimations);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', triggerAnimations);
+    };
+  }, []);
   return (
     <div className=" lg:mb-56 lg:mt-24 sm:mt-12 md:mt-16 sm:mb-12 md:mb-16">
      
-     <Swiper
+   
+           <Swiper
         ref={swiperRef}
         slidesPerView={3}
         spaceBetween={30}
-        pagination={false} 
+        pagination={false}
         modules={[Keyboard, Scrollbar, Navigation]}
         className="mySwiper relative"
-      > 
-          
+        breakpoints={{
+        
+          300: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2, 
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        }}
+      >
    
         <SwiperSlide>
    <div className="lg:mb-56">
-   <p className='sm:mt-12  lg:mt-24 '> For the body</p>
-       <h1 className='text-3xl mb-10'>An Expression of Care</h1>
-<p>Aesop formulations offer the body deserving care, to cleanse, replenish, 
+   <p data-aos="fade-right" className='sm:mt-12  lg:mt-24 '> For the body</p>
+       <h1 data-aos="fade-right" className='text-3xl mb-10'>An Expression of Care</h1>
+<p data-aos="fade-right">Aesop formulations offer the body deserving care, to cleanse, replenish, 
 and nourish skin. Each product is a sensory pleasure to use with its own delightful aroma.</p>
 
-<p className='flex mt-10'>See all Body Care<BsArrowRight className='mt-1 ml-2'></BsArrowRight> </p>
+<p data-aos="fade-right" className='flex mt-10'>See all Body Care<BsArrowRight className='mt-1 ml-2'></BsArrowRight> </p>
    </div>
 
 
@@ -79,8 +113,8 @@ and nourish skin. Each product is a sensory pleasure to use with its own delight
 
         </SwiperSlide>
         <SwiperSlide className='mr-10 lg:mt-56'><div className="text-center p-12">
-        <img src={img1} alt="" />
-        <p className='font-semibold lg:mr-24 '>Nurture Bar Soap</p>
+        <img  src={img1} alt="" />
+        <p  className='font-semibold lg:mr-24 '>Nurture Bar Soap</p>
         <p className='text-center lg:mr-24 '>Offers a mild yet effective cleanse</p>
         </div>
         </SwiperSlide>
@@ -106,13 +140,13 @@ and nourish skin. Each product is a sensory pleasure to use with its own delight
       <div className=" relative custom-navigation flex ">
       
         <div className="absolute right-0 top-0">
-        <button className="custom-next relatve text-white text-7xl bg-black py-2 px-4" onClick={handleNext}>
+        <button data-aos="fade-right" className="custom-next relatve text-white text-7xl bg-black py-2 px-4" onClick={handleNext}>
           &gt;
         </button>
         </div>
         {isPrevButtonVisible && (
        <div className="absolute top-0 left-0">
-           <button className="custom-prev relative text-white text-7xl bg-black py-2 px-4" onClick={handlePrev}>
+           <button data-aos="fade-left" className="custom-prev relative text-white text-7xl bg-black py-2 px-4" onClick={handlePrev}>
             &lt;
           </button>
        </div>
